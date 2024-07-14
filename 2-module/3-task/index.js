@@ -1,5 +1,21 @@
+"use strict";
+
 let calculator = {
-  // ваш код
+  a : 0,
+  b : 0,
+  sum() {
+    return this.a + this.b;
+  },
+
+  mul() {
+    return this.a * this.b;
+  },
+
+  read(a, b) {
+    this.a = a;
+    this.b = b;
+    return {a, b};
+  }
 };
 
 // НЕ УДАЛЯТЬ СТРОКУ, НУЖНА ДЛЯ ПРОВЕРКИ
