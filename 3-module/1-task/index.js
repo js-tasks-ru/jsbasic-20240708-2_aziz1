@@ -1,3 +1,4 @@
+"use strict";
 function namify(users) {
-  // ваш код...
+  return users.map((index) => index.name);
 }
