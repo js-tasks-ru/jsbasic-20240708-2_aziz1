@@ -1,7 +1,6 @@
 "use strict";
 
 function makeFriendsList(friends) {
-  let body = document.querySelector("body");
   let ul = document.createElement("ul");
   let arr = friends.map((friend) => friend.firstName + " " + friend.lastName);
   for (let elem of arr) {
@@ -9,6 +8,5 @@ function makeFriendsList(friends) {
     li.innerHTML = elem;
     ul.append(li);
   }
-
-  body.append(ul);
+  return ul;
 }
