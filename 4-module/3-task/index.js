@@ -15,7 +15,6 @@ function highlight(table) {
     } else if (row[i].cells[2].textContent === "f") {
       row[i].classList.add("female");
     }
-    console.log(row[i].cells[1]);
     if (+row[i].cells[1].textContent < 18) {
       row[i].style = "text-decoration: line-through";
     }
