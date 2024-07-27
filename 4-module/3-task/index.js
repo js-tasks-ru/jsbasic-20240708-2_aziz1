@@ -8,7 +8,7 @@ function highlight(table) {
     } else if (row[i].cells[3].dataset.available === "false") {
       row[i].classList.add("unavailable");
     } else {
-      row[i].hidden = "true";
+      row[i].hidden = true;
     }
     if (row[i].cells[2].textContent === "m") {
       row[i].classList.add("male");
