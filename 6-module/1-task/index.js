@@ -1,4 +1,5 @@
-"use strict";
+import createElement from "../../assets/lib/create-element.js";
+
 /**
  * Компонент, который реализует таблицу
  * с возможностью удаления строк
@@ -13,58 +14,46 @@
  *      } ]
  *
  */
+
 export default class UserTable {
-  #elem;
-  static tables = [];
   constructor(rows) {
     this.rows = rows;
-    this.#elem = document.createElement("table");
-    this.tableHtml();
+    this.renderTable();
+    this.deletUser();
+  }
+  renderTable() {
+    this.elem = createElement(`<table>
+    <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Возраст</th>
+            <th>Зарплата</th>
+            <th>Город</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
 
-    this.#elem.dataset.tindex = UserTable.tables.length;
-    UserTable.tables.push(this);
+
+    </tbody>
+</table>`);
+
+    const bodyTable = this.elem.querySelector(`tbody`);
+    this.rows.forEach((element) => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `<td>${element.name}</td>
+      <td>${element.age}</td>
+      <td>${element.salary}</td>
+      <td>${element.city}</td>
+      <td><button>X</button></td>`;
+      bodyTable.append(tr);
+    });
   }
 
-  get elem() {
-    return this.#elem;
-  }
-
-  tableHtml() {
-    let tableInner =
-      `<thead>
-    <tr>
-        <th>Имя</th>
-        <th>Возраст</th>
-        <th>Зарплата</th>
-        <th>Город</th>
-        <th></th>
-    </tr>
-</thead>
-<tbody>` +
-      this.rows
-        .map(
-          (elem) => `<tr>
-<td>${elem.name}</td>
-<td>${elem.age}</td>
-<td>${elem.salary}</td>
-<td>${elem.city}</td>
-<td><button>X</button></td>
-</tr>`
-        )
-        .join("") +
-      `
-</tbody>`;
-
-    this.#elem.innerHTML = tableInner;
-    for (let btn of this.#elem.querySelectorAll("button"))
-      btn.addEventListener("click", UserTable.handler);
-  }
-
-  static handler() {
-    let row = this.parentElement.parentElement;
-    let that =
-      UserTable.tables[+row.parentElement.parentElement.dataset.tindex];
-    that.rows.splice(row.rowIndex - 1, 1);
-    row.remove();
+  deletUser() {
+    this.elem.addEventListener("click", (e) => {
+      if (e.target.closest("button")) e.target.closest("tr").remove();
+    });
   }
 }
+
