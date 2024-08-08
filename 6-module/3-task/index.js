@@ -100,3 +100,4 @@ export default class Carousel {
     });
   }
 }
+// console.log
