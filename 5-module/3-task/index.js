@@ -9,6 +9,7 @@ function initCarousel() {
   let currentSlideIndex = 0;
   let width = carouselSlide[0].offsetWidth;
   carouselArrow[1].style.display = "none";
+ 
 
   function nextSlide() {
     currentSlideIndex++;
