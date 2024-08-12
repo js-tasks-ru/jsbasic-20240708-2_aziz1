@@ -16,11 +16,8 @@ export default class StepSlider {
       <div class="slider__thumb" style="left: 0%;">
         <span class="slider__value">0</span>
       </div>
-
       <div class="slider__progress" style="width: 0%;"></div>
-
-      <div class="slider__steps">
-      </div>
+      <div class="slider__steps"></div>
     </div>`);
     const sliderSteps = this.elem.querySelector(".slider__steps");
     for (let i = 0; i < this.steps; i++) {
