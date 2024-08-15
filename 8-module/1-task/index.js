@@ -43,6 +43,10 @@ export default class CartIcon {
   }
 
   updatePosition() {
+    if (!this.elem.offsetHeight) {
+      return;
+    }
+
     let initialTopCoord = this.elem.getBoundingClientRect().top;
     let leftIndent =
       Math.min(
