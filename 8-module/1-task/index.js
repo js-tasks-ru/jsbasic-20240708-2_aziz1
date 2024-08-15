@@ -3,7 +3,6 @@ import createElement from "../../assets/lib/create-element.js";
 export default class CartIcon {
   constructor() {
     this.render();
-
     this.addEventListeners();
   }
 
@@ -44,6 +43,10 @@ export default class CartIcon {
   }
 
   updatePosition() {
+    if (!this.elem.offsetHeight) {
+      return;
+    }
+
     let initialTopCoord = this.elem.getBoundingClientRect().top;
     let leftIndent =
       Math.min(
