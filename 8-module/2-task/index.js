@@ -12,7 +12,6 @@ export default class ProductGrid {
   render() {
     this.elem = createElement(`<div class="products-grid">
       <div class="products-grid__inner">
-
       </div>
     </div>`);
     let productsGridInner = this.elem.querySelector(".products-grid__inner");
