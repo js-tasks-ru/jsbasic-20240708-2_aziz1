@@ -132,6 +132,7 @@ export default class Cart {
 
   renderModal() {
     this.modal = new Modal();
+    
     this.modal.setTitle("Your order");
     const products = this.cartItems.map((item) =>
       this.renderProduct(item.product, item.count)

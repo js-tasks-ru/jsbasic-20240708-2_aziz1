@@ -20,7 +20,6 @@ export default class Modal {
   open() {
     this.body.append(this.modal);
     this.body.classList.add("is-modal-open");
-    console.log(this.modal);
   }
 
   setTitle(title) {
