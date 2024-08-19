@@ -29,7 +29,7 @@ export default class ProductCard {
   // функиця отлежования всплытья и добавления продукта в корзину.
   getCardBtnId() {
     this.elem.addEventListener("product-add", (e) => {
-      console.log("Продукт добавлен по ID: ", e.detail);
+      e.detail;
     });
 
     this.elem.addEventListener("click", (e) => {
@@ -44,4 +44,3 @@ export default class ProductCard {
     });
   }
 }
-

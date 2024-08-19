@@ -24,7 +24,10 @@ export default class ProductGrid {
   renderContent() {
     let productsGridInner = this.elem.querySelector(".products-grid__inner");
     productsGridInner.innerHTML = "";
+
     for (let product of this.products) {
+      console.log(this.filters);
+
       if (this.filters.noNuts && product.nuts) {
         continue;
       }

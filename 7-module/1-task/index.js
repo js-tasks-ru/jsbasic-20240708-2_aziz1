@@ -29,13 +29,15 @@ export default class RibbonMenu {
       </button>
     </div>`);
     const ribbonInner = this.elem.querySelector(".ribbon__inner");
-    this.categories.forEach((element, index, arr) => {
+    this.categories.forEach((element, index) => {
       let a = document.createElement("a");
       a.href = "#";
       a.classList.add("ribbon__item");
       a.dataset.id = element.id;
       a.textContent = element.name;
-      index === 0 ? a.classList.add("ribbon__item_active") : false;
+      index === 0
+        ? a.classList.add("ribbon__item_active")
+        : a.classList.remove("ribbon__item_active");
       ribbonInner.append(a);
     });
   }
@@ -49,18 +51,21 @@ export default class RibbonMenu {
       e.preventDefault();
 
       const linkMenu = this.ribbonInner.querySelectorAll(".ribbon__item");
-      let getId = e.target.closest(".ribbon__item").dataset.id;
-      if (getId) {
+      this.categoryId = e.target.closest(".ribbon__item").dataset.id;
+
+      if (this.categoryId === "" || this.categoryId) {
         let getRibbonItemId = new CustomEvent("ribbon-select", {
-          detail: getId,
+          detail: this.categoryId,
           bubbles: true,
         });
         this.ribbonInner.dispatchEvent(getRibbonItemId);
       }
 
+      console.log(this.categoryId);
+
       linkMenu.forEach((element) => {
         element.classList.remove("ribbon__item_active");
-        if (element.dataset.id === getId) {
+        if (element.dataset.id === this.categoryId) {
           element.classList.add("ribbon__item_active");
         }
       });
@@ -106,4 +111,3 @@ export default class RibbonMenu {
     }
   }
 }
-
