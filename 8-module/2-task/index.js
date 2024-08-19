@@ -26,7 +26,7 @@ export default class ProductGrid {
     productsGridInner.innerHTML = "";
 
     for (let product of this.products) {
-      console.log(this.filters);
+      console.log(this.filters.maxSpiciness);
 
       if (this.filters.noNuts && product.nuts) {
         continue;

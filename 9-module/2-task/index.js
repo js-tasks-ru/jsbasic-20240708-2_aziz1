@@ -48,14 +48,16 @@ export default class Main {
     // console.log(this.productsGrid);
 
     this.productsGrid.updateFilter({
-      maxSpiciness: 3,
+      noNuts: document.getElementById("nuts-checkbox").checked,
+      vegeterianOnly: document.getElementById("vegeterian-checkbox").checked,
+      maxSpiciness: this.stepSlider.value,
+      category: this.ribbonMenu.value,
     });
 
     body.addEventListener("slider-change", (e) => {
       this.productsGrid.updateFilter({
         maxSpiciness: this.stepSlider.value,
       });
-
     });
 
     body.addEventListener("ribbon-select", (e) => {
