@@ -17,11 +17,14 @@ export default class Main {
     let body = document.querySelector("body");
     this.carousel = new Carousel(slides);
     this.ribbonMenu = new RibbonMenu(categories);
-    this.stepSlider = new StepSlider({
+    let config = {
       steps: 5,
-    });
+      value: 3,
+    };
+    this.stepSlider = new StepSlider(config);
     this.cartIcon = new CartIcon();
     let cart = new Cart(this.cartIcon);
+
     const response = await fetch("products.json");
     let products = await response.json();
     this.productsGrid = new ProductsGrid(products);
@@ -41,17 +44,18 @@ export default class Main {
     holderCartIcon.append(this.cartIcon.elem);
     holderProductsGrid.append(this.productsGrid.elem);
 
-    body.addEventListener("product-add", (e) => {
-      cart.addProduct(this.productsGrid.products);
-    });
-
-    // console.log(this.productsGrid);
-
     this.productsGrid.updateFilter({
       noNuts: document.getElementById("nuts-checkbox").checked,
       vegeterianOnly: document.getElementById("vegeterian-checkbox").checked,
       maxSpiciness: this.stepSlider.value,
-      category: this.ribbonMenu.value,
+      category: this.ribbonMenu.categories[0].id,
+    });
+
+    body.addEventListener("product-add", (e) => {
+      let product = this.productsGrid.products.find(
+        (item) => item.id === e.detail
+      );
+      cart.addProduct(product);
     });
 
     body.addEventListener("slider-change", (e) => {

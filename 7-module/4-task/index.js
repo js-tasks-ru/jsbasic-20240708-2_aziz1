@@ -3,9 +3,9 @@ import createElement from "../../assets/lib/create-element.js";
 export default class StepSlider {
   constructor({ steps, value = 0 }) {
     this.steps = steps;
+    this.value = value;
     this.renderSlider();
     this.changingSliderValue();
-    this.value = value;
     this.segments = this.steps - 1;
     this.thumb = this.elem.querySelector(".slider__thumb");
     this.progress = this.elem.querySelector(".slider__progress");
@@ -15,10 +15,10 @@ export default class StepSlider {
   // верстка компонента слайдера
   renderSlider() {
     this.elem = createElement(`<div class="slider">
-      <div class="slider__thumb" style="left: 0%;">
-        <span class="slider__value">0</span>
+      <div class="slider__thumb" style="left: 75%;">
+        <span class="slider__value">${this.value}</span>
       </div>
-      <div class="slider__progress" style="width: 0%;"></div>
+      <div class="slider__progress" style="width: 75%;"></div>
       <div class="slider__steps"></div>
     </div>`);
     const sliderSteps = this.elem.querySelector(".slider__steps");
