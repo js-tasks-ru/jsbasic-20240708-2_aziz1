@@ -61,7 +61,6 @@ export default class RibbonMenu {
         this.ribbonInner.dispatchEvent(getRibbonItemId);
       }
 
-      console.log(this.categoryId);
 
       linkMenu.forEach((element) => {
         element.classList.remove("ribbon__item_active");

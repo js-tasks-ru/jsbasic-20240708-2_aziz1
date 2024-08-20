@@ -4,21 +4,24 @@ export default class StepSlider {
   constructor({ steps, value = 0 }) {
     this.steps = steps;
     this.value = value;
+    this.segments = this.steps - 1;
     this.renderSlider();
     this.changingSliderValue();
-    this.segments = this.steps - 1;
     this.thumb = this.elem.querySelector(".slider__thumb");
     this.progress = this.elem.querySelector(".slider__progress");
+    this.sliderValue = this.elem.querySelector(".slider__value");
+    this.sliderStepActive = this.elem.querySelectorAll(".slider__steps span");
+    this.valueInitial();
     this.changeValueMouse();
   }
 
   // верстка компонента слайдера
   renderSlider() {
     this.elem = createElement(`<div class="slider">
-      <div class="slider__thumb" style="left: 75%;">
+      <div class="slider__thumb">
         <span class="slider__value">${this.value}</span>
       </div>
-      <div class="slider__progress" style="width: 75%;"></div>
+      <div class="slider__progress" ></div>
       <div class="slider__steps"></div>
     </div>`);
     const sliderSteps = this.elem.querySelector(".slider__steps");
@@ -26,9 +29,22 @@ export default class StepSlider {
       let span = document.createElement("span");
       sliderSteps.append(span);
     }
-
     let sliderStepActive = this.elem.querySelectorAll(".slider__steps span");
     sliderStepActive[0].classList.add("slider__step-active");
+  }
+
+  valueInitial() {
+    const valuePercents = (this.value / this.segments) * 100;
+    this.sliderValue.textContent = this.value;
+    this.thumb.style.left = `${valuePercents}%`;
+    this.progress.style.width = `${valuePercents}%`;
+
+    this.sliderStepActive.forEach((element, index) => {
+      element.classList.remove("slider__step-active");
+      if (index === this.value) {
+        element.classList.add("slider__step-active");
+      }
+    });
   }
 
   // изменения визуала слайдера и отслежования слайдера по шагам
@@ -59,8 +75,8 @@ export default class StepSlider {
       sliderValue.textContent = this.value;
 
       // выделение шага на слайдере
-      let sliderStepActive = this.elem.querySelectorAll(".slider__steps span");
-      sliderStepActive.forEach((element, index) => {
+
+      this.sliderStepActive.forEach((element, index) => {
         element.classList.remove("slider__step-active");
         if (index === this.value) {
           element.classList.add("slider__step-active");
@@ -102,8 +118,7 @@ export default class StepSlider {
     sliderValue.textContent = this.value;
 
     // выделение шага на слайдере
-    let sliderStepActive = this.elem.querySelectorAll(".slider__steps span");
-    sliderStepActive.forEach((element, index) => {
+    this.sliderStepActive.forEach((element, index) => {
       element.classList.remove("slider__step-active");
       if (index === this.value) {
         element.classList.add("slider__step-active");
@@ -136,3 +151,4 @@ export default class StepSlider {
     });
   }
 }
+
