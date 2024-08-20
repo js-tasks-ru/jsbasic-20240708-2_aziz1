@@ -18,7 +18,6 @@ export default class Cart {
     } else {
       findProduct.count++;
     }
-    this.cartItems;
 
     this.onProductUpdate(this.cartItems);
   }
