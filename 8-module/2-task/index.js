@@ -14,22 +14,13 @@ export default class ProductGrid {
       <div class="products-grid__inner">
       </div>
     </div>`);
-    // let productsGridInner = this.elem.querySelector(".products-grid__inner");
-    // this.products.forEach((element) => {
-    //   let productCard = new ProductCard(element);
-    //   productsGridInner.append(productCard.elem);
-    // });
     this.renderContent();
   }
 
   renderContent() {
-    // let productsGridInner = this.elem.querySelector(".products-grid__inner");
-    // productsGridInner.innerHTML = "";
     this.sub("inner").innerHTML = "";
 
     for (let product of this.products) {
-      // console.log(this.filters.category);
-
       if (this.filters.noNuts && product.nuts) {
         continue;
       }
@@ -50,7 +41,7 @@ export default class ProductGrid {
       }
 
       let card = new ProductCard(product);
-      // productsGridInner.append(card.elem);
+
       this.sub("inner").append(card.elem);
     }
   }
